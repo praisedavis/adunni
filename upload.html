@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Upload Script</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Upload Your Screenplay</h1>
+
+<input type="file" id="fileInput">
+
+<button onclick="upload()">Upload</button>
+
+<script>
+
+function upload(){
+
+const file = document.getElementById("fileInput").files[0]
+
+if(!file){
+alert("Select a file")
+return
+}
+
+const reader = new FileReader()
+
+reader.onload = function(e){
+
+const scripts = JSON.parse(localStorage.getItem("scripts")) || []
+
+scripts.push({
+name:file.name,
+url:e.target.result
+})
+
+localStorage.setItem("scripts",JSON.stringify(scripts))
+
+alert("Uploaded!")
+
+window.location.href="/"
+
+}
+
+reader.readAsDataURL(file)
+
+}
+
+</script>
+
+</body>
+
+</html>
