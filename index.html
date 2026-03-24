@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Adunni</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Adunni</h1>
+<p>The home for screenwriters.</p>
+
+<a href="upload.html">
+<button>Upload Your Screenplay</button>
+</a>
+
+<h2>Scripts</h2>
+
+<ul id="scripts"></ul>
+
+<script>
+const scripts = JSON.parse(localStorage.getItem("scripts")) || []
+
+const list = document.getElementById("scripts")
+
+scripts.forEach(script=>{
+ const li = document.createElement("li")
+ const link = document.createElement("a")
+
+ link.href = script.url
+ link.textContent = script.name
+ link.target="_blank"
+
+ li.appendChild(link)
+ list.appendChild(li)
+})
+</script>
+
+</body>
+</html>
